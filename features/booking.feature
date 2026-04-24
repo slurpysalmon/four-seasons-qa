@@ -11,3 +11,4 @@ Feature: Hotel booking flow
     And I add the first available room to my cart
     And I open the cart
     Then the cart displays the selected room with a valid total price
+    

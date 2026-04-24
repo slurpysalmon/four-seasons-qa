@@ -1,0 +1,44 @@
+name: QA Tests
+
+on:
+  # Run on pull requests
+  pull_request:
+    branches: [main]
+  # Run on merges to main
+  push:
+    branches: [main]
+  # Nightly run at 02:00 UTC
+  schedule:
+    - cron: '0 2 * * *'
+  # Manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run wdio
+
+      - name: Upload test artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+            allure-results/
+            screenshots/
+          retention-days: 7

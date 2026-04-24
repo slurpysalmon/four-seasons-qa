@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Test artifacts
+logs/
+_results_/
+allure-results/
+allure-report/
+screenshots/
+videos/
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

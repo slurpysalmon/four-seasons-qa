@@ -7,8 +7,9 @@ Runs the scenario: find Cabo Del Sol, pick future dates, add a room to the cart,
 
 ## Running
 
-npm install
-npm run wdio
+Run these two commands:
+`npm ci`,
+`npm run wdio`
 
 ## Some Design Notes
 
@@ -24,4 +25,4 @@ npm run wdio
 
 ## CI
 
-.github/workflows/qa-tests.yml defines a GitHub Actions workflow that runs on PRs, merges to main, and nightly.
+`.github/workflows/qa-tests.yml` defines a GitHub Actions workflow that runs on PRs, merges to main, and nightly.

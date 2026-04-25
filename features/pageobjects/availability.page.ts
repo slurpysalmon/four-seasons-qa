@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals';
+import { $ , browser} from '@wdio/globals';
 import Page from './page.js';
 
 /**
@@ -40,5 +40,8 @@ export default class AvailabilityPage extends Page {
     await firstAddToCart.scrollIntoView({ block: 'center' });
     await firstAddToCart.waitForClickable({ timeout: 20000 });
     await firstAddToCart.click();
+
+    // Let cart populate
+    await browser.pause(3000);
   }
 }

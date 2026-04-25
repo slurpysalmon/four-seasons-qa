@@ -43,13 +43,7 @@ Then('the cart displays the selected room with a valid total price', async () =>
   const roomName = await cartPage.getRoomName();
   const total = await cartPage.getEstimatedTotal();
 
-  // The cart should show a non-empty room name.
   expect(roomName.length).toBeGreaterThan(0);
-
-  // The total should be a non-trivial string containing a supported currency.
-  // Accepts both USD and CAD to allow the test to run against properties
-  // that price in different currencies (e.g. Cabo Del Sol prices in USD,
-  // Toronto prices in CAD).
   expect(total.length).toBeGreaterThan(4);
   expect(total).toMatch(/USD|CAD/);
 });

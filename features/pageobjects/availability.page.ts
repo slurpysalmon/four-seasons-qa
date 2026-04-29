@@ -20,6 +20,15 @@ export default class AvailabilityPage extends Page {
   }
 
   /**
+   * Get the first room name for checking later.
+   */
+  public async getFirstRoomName(): Promise<string> {
+    const roomHeading = $('a.fs-cta span.text-text-heading');
+    await roomHeading.waitForDisplayed({ timeout: 10000 });
+    return (await roomHeading.getText()).trim();
+  }
+
+  /**
    * Adds the first available room to the cart. The default
    * bed option is accepted, radio buttons are not manipulated.
    */

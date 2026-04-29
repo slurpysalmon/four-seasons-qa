@@ -137,7 +137,7 @@ export const config: WebdriverIO.Config = {
         // <string[]> (file/dir) require files before executing features
         // require: ['./features/step-definitions/steps.ts'],
         // changed to look for any .ts file for scalability as more step definition files are added.
-        require: ['./features/step-definitions/**/*.ts'],
+        require: ['./features/**/*.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)

@@ -1,5 +1,6 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
+import { BookingWorld } from '../hooks/world.js';
 
 import FindHotelPage from '../pageobjects/find-hotel.page.js';
 import HotelDetailPage from '../pageobjects/hotel-detail.page.js';
@@ -31,7 +32,8 @@ When(
   },
 );
 
-When('I add the first available room to my cart', async () => {
+When('I add the first available room to my cart', async function (this: BookingWorld) {
+  this.capturedRoomName = await availabilityPage.getFirstRoomName();
   await availabilityPage.addFirstRoomToCart();
 });
 
@@ -46,4 +48,9 @@ Then('the cart displays the selected room with a valid total price', async () =>
   expect(roomName.length).toBeGreaterThan(0);
   expect(total.length).toBeGreaterThan(4);
   expect(total).toMatch(/USD|CAD/);
+});
+
+Then('the cart room name matches the selected room', async function (this: BookingWorld) {
+  const cartRoomName = await cartPage.getRoomName();
+  expect(cartRoomName).toContain(this.capturedRoomName);
 });
